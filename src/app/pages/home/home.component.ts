@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   }
 
   enviarComentarioo(){
-    console.log("hola");
+    console.log("otra cosa");
   }
 
 }
