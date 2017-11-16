@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     console.log("hola mundo");
   }
   obtenerComentarios(){
-    console.log("comentarios")
+    console.log("comentarios qwerty")
   }
 
 }
