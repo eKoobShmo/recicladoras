@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   enviarComentarioo(){
 
-    console.log("otra cosa");
+    console.log("hola mundo");
   }
 
 }
