@@ -13,8 +13,11 @@ export class HomeComponent implements OnInit {
   }
 
   enviarComentarioo(){
+    console.log("otra cosa asdasd");
+  }
 
-    console.log("otra cosa");
+  obtenerComentarios(){
+    console.log("comentarios")
   }
 
 }
