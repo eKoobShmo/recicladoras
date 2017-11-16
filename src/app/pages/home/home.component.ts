@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   }
 
   enviarComentarioo(){
-    console.log("otra cosa asdasd");
-  }
 
+    console.log("hola mundo");
+  }
   obtenerComentarios(){
     console.log("comentariasdsos")
   }
