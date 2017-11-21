@@ -11,7 +11,8 @@
 
             <!--Boton Agregar Cliente-->
             <div class="col-5">
-                <button type="button" class="btn btn-success" [routerLink]="['registroCliente']">Agregar Cliente</button>
+                <button type="button" class="btn btn-success" (click)="agregarCliente()">Agregar Cliente</button>
+
             </div>
 
 
@@ -26,16 +27,17 @@
                         <th>Nombre</th>
                         <th>Foto</th>
                         <th>Comprar</th>
+                        <th>Comprar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Carlos Perez</td>
-                        <td>Otto</td>
+                    <!--<tr *ngFor="let cliente of clientes | async()">
+                        <td>{{cliente.nombre}} {{cliente.apellidoPaterno}} {{cliente.apellidoMaterno}}</td>
+                        <td><img src="{{cliente.fotoUrl}}" class="w-50 h-50" alt=""></td>
                         <td>
-                            <button type="button" class="btn btn-success" [routerLink]="['perfilCliente']">Comprar</button>
+                            <button type="button" class="btn btn-success" (click)="verCliente(cliente.$key)">Comprar</button>
                         </td>
-                    </tr>
+                    </tr>-->
                     </tbody>
                 </table>
 
