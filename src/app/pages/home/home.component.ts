@@ -9,7 +9,13 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+
+  mostrardatos(){
+    console.log("Hola")
+  }
+
   ngOnInit() {
+
   }
 
 }
