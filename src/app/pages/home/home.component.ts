@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
 
   mostrardatos(){
-    console.log("Holaasdas asd d")
+    console.log("ee asd d")
   }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   enviarComentario(){
-    console.log("Hoola");
+    console.log("hsdf");
   }
 
 }
