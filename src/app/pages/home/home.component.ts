@@ -10,8 +10,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
 
-  mostrardatos(){
-    console.log("Holaasdas asd d")
+  mostrardatos(){asd
+    console.log("Holaasdas asd dasdfasd")
   }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   enviarComentario(){
-    console.log("Hoola");
+    console.log("Hoolasdasda");
   }
 
 }
