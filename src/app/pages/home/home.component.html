@@ -11,7 +11,7 @@
 
             <!--Boton Agregar Cliente-->
             <div class="col-5">
-                <button type="button" class="btn btn-success" (click)="agregarCliente()">Agregar Cliente</button>
+                <button type="button" class="btn btn-success" (click)="sendToNewClient()">Agregar Cliente</button>
 
             </div>
 
@@ -27,17 +27,16 @@
                         <th>Nombre</th>
                         <th>Foto</th>
                         <th>Comprar</th>
-                        <th>Comprar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <!--<tr *ngFor="let cliente of clientes | async()">
+                    <tr *ngFor="let cliente of clientes | async">
                         <td>{{cliente.nombre}} {{cliente.apellidoPaterno}} {{cliente.apellidoMaterno}}</td>
-                        <td><img src="{{cliente.fotoUrl}}" class="w-50 h-50" alt=""></td>
+                        <td><img src="{{cliente.fotoUrl}}" style="width: 50px; height: 50px" alt=""></td>
                         <td>
-                            <button type="button" class="btn btn-success" (click)="verCliente(cliente.$key)">Comprar</button>
+                            <button type="button" class="btn btn-success" (click)="sendToClient(cliente.$key)">Comprar</button>
                         </td>
-                    </tr>-->
+                    </tr>
                     </tbody>
                 </table>
 

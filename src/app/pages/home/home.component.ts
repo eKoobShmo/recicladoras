@@ -25,24 +25,13 @@ export class HomeComponent implements OnInit {
 
     }
 
-    verCliente(key: string) {
+    sendToClient(key: string) {
         this.router.navigate(['/cliente', key])
     }
 
-    agregarCliente(){
-        this.clientes.push({
-            nombre: "Pancho",
-            apellidoPaterno: "Alcaraz",
-            apellidoMaterno: "Perez",
-            rfc: "fdsafasd",
-            mesComprobante: "Enero",
-            identificacionUrl: "asdfasdf",
-            comprobanteDomicilioUrl: "dasfsdf",
-            huellaIzquierdaUrl: "asdfas",
-            huellaDerechaUrl: "adfssd",
-            fotoUrl: "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"
-        })
-  }
+    sendToNewClient(){
+        this.router.navigate(['/nuevoCliente'])
+    }
 
 }
 
