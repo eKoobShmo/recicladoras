@@ -5,13 +5,13 @@
             <div class="col-7" >
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Buscar Cliente">
-                    <i class="form-group__bar" [routerLink]="['registroCliente']"></i>
+                    <i class="form-group__bar" ></i>
                 </div>
             </div>
 
             <!--Boton Agregar Cliente-->
             <div class="col-5">
-                <button type="button" class="btn btn-success">Agregar Cliente</button>
+                <button type="button" class="btn btn-success" [routerLink]="['registroCliente']">Agregar Cliente</button>
             </div>
 
 
@@ -35,23 +35,7 @@
                         <td>Carlos Perez</td>
                         <td>Otto</td>
                         <td>
-                            <button type="button" class="btn btn-success">Comprar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Carlos Perez</td>
-                        <td>Otto</td>
-                        <td>
-                            <button type="button" class="btn btn-success">Comprar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Carlos Perez</td>
-                        <td>Otto</td>
-                        <td>
-                            <button type="button" class="btn btn-success">Comprar</button>
+                            <button type="button" class="btn btn-success" [routerLink]="['perfilCliente']">Comprar</button>
                         </td>
                     </tr>
                     </tbody>
