@@ -10,20 +10,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
 
-  mostrardatos(){
-    console.log("ee asd d")
-
-  }
-
   ngOnInit() {
-    this.mostrardatos();
-    this.enviarComentario();
-
   }
 
-  enviarComentario(){
-    console.log("hsdf");
-
-  }
 
 }
