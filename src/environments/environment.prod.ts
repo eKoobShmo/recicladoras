@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
     firebase: {
-        apiKey: "AIzaSyCUu2m2faPAjK5shxEnEF7Y7kZz0M85C5o",
-        authDomain: "citylink-9412a.firebaseapp.com",
-        databaseURL: "https://citylink-9412a.firebaseio.com",
-        projectId: "citylink-9412a",
-        storageBucket: "citylink-9412a.appspot.com",
-        messagingSenderId: "380042811965"
+        apiKey: "AIzaSyDE9R6bt27GC_49_39i1Xut_eFmjkmOcL4",
+        authDomain: "recicladoras-c06e3.firebaseapp.com",
+        databaseURL: "https://recicladoras-c06e3.firebaseio.com",
+        projectId: "recicladoras-c06e3",
+        storageBucket: "recicladoras-c06e3.appspot.com",
+        messagingSenderId: "811409489555"
     }
 };
