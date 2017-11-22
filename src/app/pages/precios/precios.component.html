@@ -21,9 +21,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Cobre</td>
-                        <td>6.00</td>
+                    <tr *ngFor="let producto of productos | async">
+                        <td>{{producto.producto}}</td>
+                        <td>{{producto.precio}}</td>
                         <td>
                             <button class="btn btn-success">Editar</button>
                         </td>
@@ -48,7 +48,7 @@
                         <i class="form-group__bar"></i>
                     </div>
 
-                    <button class="btn btn-success">Agregar/Editar</button>
+                    <button class="btn btn-success" (click)="agregarProductos()">Agregar/Editar</button>
                 </div>
 
 
