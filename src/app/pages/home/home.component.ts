@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {Cliente} from "../../interfaces/cliente";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-home',
@@ -10,7 +11,11 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-    clientes: FirebaseListObservable<Cliente[]>;
+    clientes: Cliente[];
+    clientesTemporal: Cliente[];
+    clientesAlgo: Observable<Cliente[]>;
+    busqueda: string;
+
 
 
     constructor(private db: AngularFireDatabase,
@@ -19,7 +24,12 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit() {
-        this.clientes = this.db.list('Clientes')
+        this.clientesAlgo = this.db.list('Clientes');
+        this.clientesAlgo.subscribe(result =>{
+            this.clientes = this.clientesTemporal =  result;
+            console.log(this.clientes);
+
+        });
 
 
 
@@ -31,6 +41,14 @@ export class HomeComponent implements OnInit {
 
     sendToNewClient(){
         this.router.navigate(['/nuevoCliente'])
+    }
+
+    searchClient(terminoBusqueda:string){
+        if (!this.clientes) {
+            this.clientesTemporal = []
+        }else {
+            this.clientesTemporal = this.clientes.filter(it => it.nombre.toLowerCase().indexOf(terminoBusqueda.toLowerCase()) >= 0);
+        }
     }
 
 }

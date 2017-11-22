@@ -1,10 +1,11 @@
 <section class="content">
+
     <div class="card p-25 mr-5" style="height: 80vh" >
         <div class="row mx-auto" style="width: 60%">
             <!--Buscador-->
             <div class="col-7" >
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Buscar Cliente">
+                    <input type="text" class="form-control" placeholder="Buscar Cliente" [(ngModel)]="busqueda" (ngModelChange)="searchClient(busqueda)">
                     <i class="form-group__bar" ></i>
                 </div>
             </div>
@@ -19,8 +20,9 @@
         </div>
 
         <div class="row cardheigh" >
-            <div class="col-12">
 
+            <div class="col-12">
+                <perfect-scrollbar>
                 <table class="table w-100" >
                     <thead class="thead-default">
                     <tr>
@@ -30,7 +32,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let cliente of clientes | async">
+                    <tr *ngFor="let cliente of clientesTemporal">
                         <td>{{cliente.nombre}} {{cliente.apellidoPaterno}} {{cliente.apellidoMaterno}}</td>
                         <td><img src="{{cliente.fotoUrl}}" style="width: 50px; height: 50px" alt=""></td>
                         <td>
@@ -39,10 +41,11 @@
                     </tr>
                     </tbody>
                 </table>
-
+                </perfect-scrollbar>
             </div>
 
         </div>
+
     </div>
 
 </section>
