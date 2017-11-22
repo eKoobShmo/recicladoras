@@ -7,7 +7,7 @@
             <!--Buscador y Tabla Precios-->
             <div class="col-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Buscar Producto">
+                    <input type="text" class="form-control" placeholder="Buscar Producto"  [(ngModel)]="busqueda" (ngModelChange)="searchProduct(busqueda)">
                     <i class="form-group__bar"></i>
                 </div>
 
@@ -21,7 +21,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let producto of productos | async">
+                    <tr *ngFor="let producto of productosTemporal">
                         <td>{{producto.producto}}</td>
                         <td>{{producto.precio}}</td>
                         <td>
