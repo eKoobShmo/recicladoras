@@ -30,12 +30,16 @@ export class PreciosComponent implements OnInit {
     }
 
     addProducts(){
-        this.productosFireBase.push({
-            producto: this.nombreProductoEditar,
-            precio: this.precioProductoEditar,
-        });
+        if(this.nombreProductoEditar != null && this.precioProductoEditar != null){
+            this.productosFireBase.push({
+                producto: this.nombreProductoEditar,
+                precio: this.precioProductoEditar,
+            });
 
-        this.nombreProductoEditar = this.precioProductoEditar = null;
+            this.nombreProductoEditar = this.precioProductoEditar = null;
+        }
+
+
     }
     
     sendProductToEdit(keyProducto: string,producto:string,precio:number){
@@ -46,12 +50,15 @@ export class PreciosComponent implements OnInit {
     }
 
     finishProductEdit(){
-        this.productosFireBase.update(this.keyProductoEditar,{
-            producto: this.nombreProductoEditar,
-            precio: this.precioProductoEditar,
-        });
+        if(this.precioProductoEditar != null && this.nombreProductoEditar != null){
+            this.productosFireBase.update(this.keyProductoEditar,{
+                producto: this.nombreProductoEditar,
+                precio: this.precioProductoEditar,
+            });
 
-        this.nombreProductoEditar = this.precioProductoEditar = this.keyProductoEditar = null;
+            this.nombreProductoEditar = this.precioProductoEditar = this.keyProductoEditar = null;
+        }
+
 
     }
 
