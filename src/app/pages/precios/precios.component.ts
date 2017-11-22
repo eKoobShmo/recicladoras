@@ -37,7 +37,23 @@ export class PreciosComponent implements OnInit {
 
         this.nombreProductoEditar = this.precioProductoEditar = null;
     }
- 
+    
+    sendProductToEdit(keyProducto: string,producto:string,precio:number){
+
+        this.nombreProductoEditar = producto;
+        this.precioProductoEditar = precio;
+        this.keyProductoEditar = keyProducto;
+    }
+
+    finishProductEdit(){
+        this.productosFireBase.update(this.keyProductoEditar,{
+            producto: this.nombreProductoEditar,
+            precio: this.precioProductoEditar,
+        });
+
+        this.nombreProductoEditar = this.precioProductoEditar = this.keyProductoEditar = null;
+
+    }
 
     searchProduct(terminoBusqueda: string) {
         if (!this.productos) {
