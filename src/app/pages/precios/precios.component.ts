@@ -16,24 +16,5 @@ export class PreciosComponent implements OnInit {
   ngOnInit() {
     this.productos = this.db.list('Productos')
   }
-
-  agregarProductos(){
-    this.productos.push({
-          producto: "Cobre",
-          precio: 300
-
-      })
-
-      this.productos.push({
-          producto: "Aluminio",
-          precio: 100
-
-      })
-
-      this.productos.push({
-          producto: "Fierro",
-          precio: 200
-
-      })
-  }
+  
 }
