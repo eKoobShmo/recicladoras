@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
-import {Producto} from "../../interfaces/producto";
+import {Precio} from "../../interfaces/precio";
 import {Observable} from "rxjs/Observable";
 
 @Component({
@@ -10,9 +10,9 @@ import {Observable} from "rxjs/Observable";
 })
 export class PreciosComponent implements OnInit {
 
-    productos: Producto[];
-    productosTemporal: Producto[];
-    productosFireBase: FirebaseListObservable<Producto[]>;
+    productos: Precio[];
+    productosTemporal: Precio[];
+    productosFireBase: FirebaseListObservable<Precio[]>;
     busqueda: string;
 
     nombreProductoEditar: string;
