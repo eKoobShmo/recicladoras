@@ -7,29 +7,36 @@
             <!--Buscador y Tabla Precios-->
             <div class="col-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Buscar Producto"  [(ngModel)]="busqueda" (ngModelChange)="searchProduct(busqueda)">
+                    <input type="text" class="form-control" placeholder="Buscar Producto" [(ngModel)]="busqueda"
+                           (ngModelChange)="searchProduct(busqueda)">
                     <i class="form-group__bar"></i>
                 </div>
 
-
-                <table class="table mb-3 mt-3">
-                    <thead class="thead-default">
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Editar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let producto of productosTemporal">
-                        <td>{{producto.producto}}</td>
-                        <td>{{producto.precio}}</td>
-                        <td>
-                            <button class="btn btn-success">Editar</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="tableHeigh">
+                    <perfect-scrollbar>
+                    <table class="table mb-3 mt-3">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Editar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let producto of productosTemporal">
+                            <td>{{producto.producto}}</td>
+                            <td>{{producto.precio}}</td>
+                            <td>
+                                <button class="btn btn-success"
+                                        (click)="sendProductToEdit(producto.$key,producto.producto,producto.precio)">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </perfect-scrollbar>
+                </div>
 
 
             </div>
@@ -39,16 +46,23 @@
                 <h3 class="text-center">Agregar / Editar Productos</h3>
                 <div class="card">
                     <div class="form-group mt-5">
-                        <input type="text" class="form-control" placeholder="Nombre Producto">
+                        <input type="text" class="form-control" placeholder="Nombre Producto"
+                               [(ngModel)]="nombreProductoEditar">
                         <i class="form-group__bar"></i>
                     </div>
 
                     <div class="form-group mt-5">
-                        <input type="text" class="form-control" placeholder="Precio Producto">
+                        <input type="text" class="form-control" placeholder="Precio Producto"
+                               [(ngModel)]="precioProductoEditar">
                         <i class="form-group__bar"></i>
                     </div>
 
-                    <button class="btn btn-success" (click)="agregarProductos()">Agregar/Editar</button>
+                    <button class="btn btn-success" *ngIf="keyProductoEditar == null" (click)="addProducts()">Agregar
+                        Producto
+                    </button>
+                    <button class="btn btn-success" *ngIf="keyProductoEditar != null" (click)="finishProductEdit()">
+                        Editar Producto
+                    </button>
                 </div>
 
 

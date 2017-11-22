@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {Producto} from "../../interfaces/producto";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'app-precios',
@@ -11,16 +12,32 @@ export class PreciosComponent implements OnInit {
 
     productos: Producto[];
     productosTemporal: Producto[];
+    productosFireBase: FirebaseListObservable<Producto[]>;
     busqueda: string;
+
+    nombreProductoEditar: string;
+    precioProductoEditar: number;
+    keyProductoEditar: string;
 
     constructor(private db: AngularFireDatabase) {
     }
 
     ngOnInit() {
+        this.productosFireBase =  this.db.list('Productos');
         this.db.list('Productos').subscribe(result => {
             this.productos =  this.productosTemporal = result;
         });
     }
+
+    addProducts(){
+        this.productosFireBase.push({
+            producto: this.nombreProductoEditar,
+            precio: this.precioProductoEditar,
+        });
+
+        this.nombreProductoEditar = this.precioProductoEditar = null;
+    }
+ 
 
     searchProduct(terminoBusqueda: string) {
         if (!this.productos) {
