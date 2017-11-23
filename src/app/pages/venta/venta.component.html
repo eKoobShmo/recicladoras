@@ -19,14 +19,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let producto of productos">
+                            <tr *ngFor="let producto of productos; let i = index">
                                 <td>{{producto.nombre}}</td>
                                 <td>{{producto.cantidad}}</td>
                                 <td>{{producto.precio}}</td>
                                 <td>{{producto.total}}</td>
                                 <td>
-                                    <button class="btn btn-success">Editar</button>
-                                    <button class="btn btn-danger">Eliminar</button>
+                                    <button class="btn btn-success" (click)="editProduct(i)">Editar</button>
+                                    <button class="btn btn-danger" (click)="deleteProducto(i)">Eliminar</button>
                                 </td>
                             </tr>
                             </tbody>
@@ -76,7 +76,8 @@
                         <i class="form-group__bar"></i>
                     </div>
 
-                    <button class="btn btn-success" (click)="addNewProduct()">Agregar Producto</button>
+                    <button class="btn btn-success" *ngIf="!editar" (click)="addNewProduct()">Agregar Producto</button>
+                    <button class="btn btn-success" *ngIf="editar" (click)="finishEditProduct()">Finalizar Edicion</button>
                 </div>
             </div>
 
