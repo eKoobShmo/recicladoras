@@ -129,5 +129,7 @@ export class VentaComponent implements OnInit {
 
     }
 
-
+    deleteProducto(index: number){
+        this.productos.splice(index, 1);
+    }
 }
