@@ -1,0 +1,87 @@
+<section class="content">
+
+    <div class="card p-25 mr-5" style="height: 80vh">
+
+        <div class="row">
+
+            <!--Tabla Productos-->
+            <div class="col-8">
+                <div class="tableHeigh">
+                    <perfect-scrollbar>
+                        <table class="table mb-3 mt-3">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Puerta Fierro</td>
+                                <td>2</td>
+                                <td>100</td>
+                                <td>200</td>
+                                <td>
+                                    <button class="btn btn-success">Editar</button>
+                                    <button class="btn btn-danger">Eliminar</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </perfect-scrollbar>
+                </div>
+
+
+            </div>
+
+            <!--Zona Edicion / Adicion Productos-->
+            <div class="col-4 mx-auto p-5">
+                <h3 class="text-center">Agregar / Editar Productos</h3>
+                <div>
+
+                    <div class="form-group mt-4">
+                        <input type="text" class="form-control form-control" placeholder="Nombre Producto">
+                        <i class="form-group__bar"></i>
+                    </div>
+
+                    <label class="custom-control custom-radio">
+                        <input type="radio" name="radio-inline" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Kg</span>
+                    </label>
+
+                    <label class="custom-control custom-radio">
+                        <input type="radio" name="radio-inline" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Unidad</span>
+                    </label>
+                    <div class="form-group">
+                        <div class="input-group mt-3">
+                            <button class="btn btn-success">Bascula</button>
+                            <input type="text" class="form-control form-control" placeholder="">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control" placeholder="Precio">
+                        <i class="form-group__bar"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control" placeholder="Cantidad">
+                        <i class="form-group__bar"></i>
+                    </div>
+
+                    <button class="btn btn-success">Agregar Producto</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
