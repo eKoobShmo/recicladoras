@@ -36,7 +36,7 @@
 
                 <div class="text-center">
                     <h4>Total: {{total}}</h4>
-                    <button class="btn btn-success">Finalizar Venta</button>
+                    <button class="btn btn-success" (click)="finishSell()">Finalizar Venta</button>
                 </div>
             </div>
 
@@ -51,21 +51,19 @@
                     </div>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="unidadProductoEditar"
-                               (ngModelChange)="imprimir()">
+                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="unidadProductoEditar">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Kg</span>
                     </label>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="unidadProductoEditar"
-                        (ngModelChange)="imprimir()">
+                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="unidadProductoEditar">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Unidad</span>
                     </label>
                     <div class="form-group">
                         <div class="input-group mt-3">
-                            <button class="btn btn-success">Bascula</button>
+                            <button *ngIf="unidadProductoEditar == 'Kg'" class="btn btn-success">Bascula</button>
                             <input type="text" class="form-control form-control" placeholder="" [(ngModel)]="cantidadProductoEditar">
                             <i class="form-group__bar"></i>
                         </div>

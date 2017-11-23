@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Producto} from "../../interfaces/producto";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
+import {Compra} from "../../interfaces/compra";
 
 @Component({
     selector: 'app-venta',
@@ -61,6 +63,8 @@ export class VentaComponent implements OnInit {
 
     ];
 
+    compra: FirebaseListObservable<any>;
+
     nombreProductoEditar: string;
     unidadProductoEditar: string;
     cantidadProductoEditar: number;
@@ -72,10 +76,11 @@ export class VentaComponent implements OnInit {
     total: number;
 
 
-    constructor() {
+    constructor(private db: AngularFireDatabase) {
     }
 
     ngOnInit() {
+        this.compra = this.db.list('Compras');
         this.total = 0;
     }
 
@@ -144,5 +149,18 @@ export class VentaComponent implements OnInit {
     deleteProducto(index: number){
         this.productos.splice(index, 1);
         this.calculateTotal();
+    }
+
+    finishSell(){
+        if(this.productos != null){
+            this.compra.push({
+                productos: this.productos,
+                total: this.total
+            })
+
+            this.productos = null;
+            this.total = 0;
+        }
+
     }
 }
