@@ -69,11 +69,21 @@ export class VentaComponent implements OnInit {
     editar: boolean = false;
     indexProducto: number;
 
+    total: number;
+
 
     constructor() {
     }
 
     ngOnInit() {
+        this.total = 0;
+    }
+
+    calculateTotal(){
+        this.total = null;
+        for(let producto of this.productos){
+            this.total += producto.total;
+        }
     }
 
     addNewProduct(){
@@ -92,6 +102,7 @@ export class VentaComponent implements OnInit {
             });
 
             this.nombreProductoEditar = this.unidadProductoEditar = this.cantidadProductoEditar = this.precioProductoEditar= this.totlaProductoEditar = null;
+            this.calculateTotal();
         }
 
     }
@@ -125,11 +136,13 @@ export class VentaComponent implements OnInit {
             this.nombreProductoEditar = this.unidadProductoEditar = this.cantidadProductoEditar = this.precioProductoEditar= this.totlaProductoEditar = null;
             this.editar = false;
             this.indexProducto = null;
+            this.calculateTotal();
         }
 
     }
 
     deleteProducto(index: number){
         this.productos.splice(index, 1);
+        this.calculateTotal();
     }
 }
