@@ -46,40 +46,37 @@
                 <div>
 
                     <div class="form-group mt-4">
-                        <input type="text" class="form-control form-control" placeholder="Nombre Producto">
+                        <input type="text" class="form-control form-control" placeholder="Nombre Producto" [(ngModel)]="nombreProductoEditar">
                         <i class="form-group__bar"></i>
                     </div>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" class="custom-control-input">
+                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="unidadProductoEditar"
+                               (ngModelChange)="imprimir()">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Kg</span>
                     </label>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" class="custom-control-input">
+                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="unidadProductoEditar"
+                        (ngModelChange)="imprimir()">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Unidad</span>
                     </label>
                     <div class="form-group">
                         <div class="input-group mt-3">
                             <button class="btn btn-success">Bascula</button>
-                            <input type="text" class="form-control form-control" placeholder="">
+                            <input type="text" class="form-control form-control" placeholder="" [(ngModel)]="cantidadProductoEditar">
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control" placeholder="Precio">
+                        <input type="text" class="form-control form-control" placeholder="Precio" [(ngModel)]="precioProductoEditar">
                         <i class="form-group__bar"></i>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control form-control" placeholder="Cantidad">
-                        <i class="form-group__bar"></i>
-                    </div>
-
-                    <button class="btn btn-success">Agregar Producto</button>
+                    <button class="btn btn-success" (click)="addNewProduct()">Agregar Producto</button>
                 </div>
             </div>
 

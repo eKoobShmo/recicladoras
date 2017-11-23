@@ -61,10 +61,36 @@ export class VentaComponent implements OnInit {
 
     ];
 
+    nombreProductoEditar: string;
+    unidadProductoEditar: string;
+    cantidadProductoEditar: number;
+    precioProductoEditar: number;
+    totlaProductoEditar: number;
+
+
     constructor() {
     }
 
     ngOnInit() {
     }
 
+    addNewProduct(){
+
+        if(this.nombreProductoEditar != null &&
+        this.unidadProductoEditar != null &&
+        this.cantidadProductoEditar != null &&
+        this.precioProductoEditar != null )
+        {
+            this.productos.push({
+                nombre: this.nombreProductoEditar,
+                unidad: this.unidadProductoEditar,
+                cantidad: this.cantidadProductoEditar,
+                precio: this.precioProductoEditar,
+                total: this.precioProductoEditar * this.cantidadProductoEditar
+            });
+
+            this.nombreProductoEditar = this.unidadProductoEditar = this.cantidadProductoEditar = this.precioProductoEditar= this.totlaProductoEditar = null;
+        }
+
+    }
 }
