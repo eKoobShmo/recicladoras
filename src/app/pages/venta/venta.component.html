@@ -19,11 +19,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Puerta Fierro</td>
-                                <td>2</td>
-                                <td>100</td>
-                                <td>200</td>
+                            <tr *ngFor="let producto of productos">
+                                <td>{{producto.nombre}}</td>
+                                <td>{{producto.cantidad}}</td>
+                                <td>{{producto.precio}}</td>
+                                <td>{{producto.total}}</td>
                                 <td>
                                     <button class="btn btn-success">Editar</button>
                                     <button class="btn btn-danger">Eliminar</button>
@@ -32,14 +32,12 @@
                             </tbody>
                         </table>
                     </perfect-scrollbar>
-
-                    <div class="text-center">
-                        <h4>Total: 500</h4>
-                        <button class="btn btn-success">Finalizar Venta</button>
-                    </div>
                 </div>
 
-
+                <div class="text-center">
+                    <h4>Total: 500</h4>
+                    <button class="btn btn-success">Finalizar Venta</button>
+                </div>
             </div>
 
             <!--Zona Edicion / Adicion Productos-->
