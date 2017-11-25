@@ -12,4 +12,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  enviarComentarioo(){
+
+    console.log("hola mundo");
+  }
+  obtenerComentarios(){
+    console.log("comentarios qwerty")
+  }
+
 }
