@@ -5,21 +5,21 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="form-group form-group--float">
-        <input type="text" class="form-control" formControlFloat>
+        <input type="text" class="form-control" formControlFloat required pattern="[A-Za-z]">
         <label>Nombres</label>
         <i class="form-group__bar"></i>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="form-group form-group--float">
-        <input type="text" class="form-control" formControlFloat>
+        <input type="text" class="form-control" formControlFloat required>
         <label>Apellido Paterno</label>
         <i class="form-group__bar"></i>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="form-group form-group--float">
-        <input type="text" class="form-control" formControlFloat>
+        <input type="text" class="form-control" formControlFloat required>
         <label>Apellido Materno</label>
         <i class="form-group__bar"></i>
       </div>
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="form-group form-group--float">
-          <input type="text" class="form-control" formControlFloat>
+          <input type="text" class="form-control" formControlFloat required>
           <label>RFC</label>
           <i class="form-group__bar"></i>
         </div>
@@ -54,16 +54,15 @@
     <div class="form-group form-group--select">
       <div class="col-sm-2">
       <select class="form-control" Enabled>
-        <option>Select an Option</option><option>Enero</option><option>Febrero</option><option>Marzo</option>
+        <option>Selecciona El Mes</option><option>Enero</option><option>Febrero</option><option>Marzo</option>
         <option>Abril</option><option>Mayo</option><option>Junio</option><option>Julio</option>
         <option>Agosto</option><option>Septiembre</option><option>Octubre</option>
         <option>Noviembre</option><option>Diciembre</option>
       </select>
       </div>
-
-    <div class="">
-      <button type="button" class="btn btn-primary btn-lg">Huella</button>
-      <button type="button" class="btn btn-primary btn-lg">Huella</button>
+    <div class="subir">
+      <button type="button" class="btn btn-success btn-lg">Huella</button>
+      <button type="button" class="btn btn-success btn-lg">Huella</button>
       <div class="btn-group" dropdown>
         <button dropdownToggle type="button" class="btn btn-light">Foto</button>
         <div *dropdownMenu class="dropdown-menu">
@@ -75,9 +74,6 @@
     </div>
   </div>
 </div>
-
-    <div class="col-md-4">
-      <button type="button" class="btn btn-primary">Guardar Datos</button>
-    </div>
+      <button type="button" class="btn btn-success">Guardar Datos</button>
   </div>
 </section>
