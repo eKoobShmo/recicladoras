@@ -16,6 +16,7 @@ import {alertService} from "../services/alert.service";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase} from "angularfire2/database";
 import {HomeComponent} from "../pages/home/home.component";
+import {RegistroClienteComponent} from "../pages/registro-cliente/registro-cliente.component";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -28,7 +29,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         SearchComponent,
         NavigationComponent,
         NavigationTriggerComponent,
-        HomeComponent
+        HomeComponent,
+        RegistroClienteComponent
     ],
     imports: [
         CommonModule,
