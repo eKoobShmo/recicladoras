@@ -65,15 +65,11 @@ export class VentaComponent implements OnInit {
 
     compra: FirebaseListObservable<any>;
 
-    nombreProductoEditar: string;
-    unidadProductoEditar: string;
-    cantidadProductoEditar: number;
-    precioProductoEditar: number;
-    totlaProductoEditar: number;
+    editableProduct: Producto;
     editar: boolean = false;
     indexProducto: number;
 
-    total: number;
+    total: number = 0;
 
 
     constructor(private db: AngularFireDatabase) {
@@ -81,7 +77,6 @@ export class VentaComponent implements OnInit {
 
     ngOnInit() {
         this.compra = this.db.list('Compras');
-        this.total = 0;
     }
 
     calculateTotal(){
@@ -93,20 +88,17 @@ export class VentaComponent implements OnInit {
 
     addNewProduct(){
 
-        if(this.nombreProductoEditar != null &&
-        this.unidadProductoEditar != null &&
-        this.cantidadProductoEditar != null &&
-        this.precioProductoEditar != null )
+        if(this.editableProduct != null)
         {
             this.productos.push({
-                nombre: this.nombreProductoEditar,
-                unidad: this.unidadProductoEditar,
-                cantidad: this.cantidadProductoEditar,
-                precio: this.precioProductoEditar,
-                total: this.precioProductoEditar * this.cantidadProductoEditar
+                nombre: this.editableProduct.nombre,
+                unidad: this.editableProduct.unidad,
+                cantidad: this.editableProduct.cantidad,
+                precio: this.editableProduct.precio,
+                total: this.editableProduct.precio * this.editableProduct.cantidad
             });
 
-            this.nombreProductoEditar = this.unidadProductoEditar = this.cantidadProductoEditar = this.precioProductoEditar= this.totlaProductoEditar = null;
+            this.editableProduct = null;
             this.calculateTotal();
         }
 
@@ -114,31 +106,22 @@ export class VentaComponent implements OnInit {
 
     editProduct(index:number){
         this.indexProducto = index;
-        let producto: Producto = this.productos[index];
-
-        this.nombreProductoEditar = producto.nombre;
-        this.unidadProductoEditar = producto.unidad;
-        this.cantidadProductoEditar = producto.cantidad;
-        this.precioProductoEditar = producto.precio;
-
+        this.editableProduct = this.productos[index];
         this.editar= true;
     }
 
     finishEditProduct(){
 
-        if(this.nombreProductoEditar != null &&
-            this.unidadProductoEditar != null &&
-            this.cantidadProductoEditar != null &&
-            this.precioProductoEditar != null )
+        if(this.editableProduct != null)
         {
             this.productos[this.indexProducto]={
-                nombre: this.nombreProductoEditar,
-                unidad: this.unidadProductoEditar,
-                cantidad: this.cantidadProductoEditar,
-                precio: this.precioProductoEditar,
-                total: this.precioProductoEditar * this.cantidadProductoEditar
+                nombre: this.editableProduct.nombre,
+                unidad: this.editableProduct.unidad,
+                cantidad: this.editableProduct.cantidad,
+                precio: this.editableProduct.precio,
+                total: this.editableProduct.precio * this.editableProduct.cantidad
             };
-            this.nombreProductoEditar = this.unidadProductoEditar = this.cantidadProductoEditar = this.precioProductoEditar= this.totlaProductoEditar = null;
+            this.editableProduct = null;
             this.editar = false;
             this.indexProducto = null;
             this.calculateTotal();

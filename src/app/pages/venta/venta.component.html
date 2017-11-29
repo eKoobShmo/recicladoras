@@ -46,31 +46,31 @@
                 <div>
 
                     <div class="form-group mt-4">
-                        <input type="text" class="form-control form-control" placeholder="Nombre Producto" [(ngModel)]="nombreProductoEditar">
+                        <input type="text" class="form-control form-control" placeholder="Nombre Producto" [(ngModel)]="editableProduct.nombre">
                         <i class="form-group__bar"></i>
                     </div>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="unidadProductoEditar">
+                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="editableProduct.unidad">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Kg</span>
                     </label>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="unidadProductoEditar">
+                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="editableProduct.unidad">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Unidad</span>
                     </label>
                     <div class="form-group">
                         <div class="input-group mt-3">
                             <button *ngIf="unidadProductoEditar == 'Kg'" class="btn btn-success">Bascula</button>
-                            <input type="text" class="form-control form-control" placeholder="" [(ngModel)]="cantidadProductoEditar">
+                            <input type="text" class="form-control form-control" placeholder="" [(ngModel)]="editableProduct.cantidad">
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control" placeholder="Precio" [(ngModel)]="precioProductoEditar">
+                        <input type="text" class="form-control form-control" placeholder="Precio" [(ngModel)]="editableProduct.precio">
                         <i class="form-group__bar"></i>
                     </div>
 
