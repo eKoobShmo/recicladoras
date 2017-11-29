@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="form-group form-group--float">
-        <input type="text" class="form-control" formControlFloat required>
+        <input type="text" class="form-control" formControlFloat required pattern="[A-Za-z]">
         <label>Nombres</label>
         <i class="form-group__bar"></i>
       </div>
@@ -33,34 +33,71 @@
           <i class="form-group__bar"></i>
         </div>
       </div>
-      <div class="Row generar">
+      <div class="Row">
         <a class="btn btn-light" href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" target="_blank" role="button">Generar</a>
       </div>
     </div>
-<div class="dd">
-  <div class="card d1">
+<div class="Row">
+  <div class="card">
+      <div class="card-body">
           <h4 class="card-title">Identificacion Oficial</h4>
-          <input type="file" name="archivo" value="arch">
-    </div>
-      <div class="d2">
-          <h4 class="card-title">Comprobante De Domicilio</h4>
-          <input type="file" name="archivo" value="arch">
-    </div>
+          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
+      </div>
   </div>
-  <div class="mes">
+  <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Comprobante De Domicilio</h4>
+        <div class="well dropzone">
+          <h5>Arrastra Archivos</h5>
+          <img src="/assets/img/drop-images.png">
+          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <h4>cargar archivos</h4>
+        <button type="button" name="btn btn-success"
+          {click}="cargarImagenesFirebase()"
+          [disabled]="archivos.length == 0 || !permiteCargar ">
+           Cargar a Firebase
+        </button>
+        <button type="button" class="btn btn-danger"
+          {click}="limpiarArchivos()">Limpiar Archivos</button>
+      </div>
+  </div>
+
+  <table class"table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Progreso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="select">
     <div class="form-group form-group--select">
+      <div class="col-sm-2">
       <select class="form-control" Enabled>
         <option>Selecciona El Mes</option><option>Enero</option><option>Febrero</option><option>Marzo</option>
         <option>Abril</option><option>Mayo</option><option>Junio</option><option>Julio</option>
         <option>Agosto</option><option>Septiembre</option><option>Octubre</option>
         <option>Noviembre</option><option>Diciembre</option>
       </select>
-    </div>
-  </div>
+      </div>
     <div class="subir">
       <button type="button" class="btn btn-success btn-lg">Huella</button>
       <button type="button" class="btn btn-success btn-lg">Huella</button>
-      <div class="btn-group foto" dropdown>
+      <div class="btn-group" dropdown>
         <button dropdownToggle type="button" class="btn btn-light">Foto</button>
         <div *dropdownMenu class="dropdown-menu">
           <a class="dropdown-item" href="#">Subir Foto</a>
@@ -68,7 +105,9 @@
         </div>
       </div>
     </div>
-  <button type="button" class="btn btn-success">Guardar Datos</button>
+    </div>
+  </div>
 </div>
-
+      <button type="button" class="btn btn-success">Guardar Datos</button>
+  </div>
 </section>
