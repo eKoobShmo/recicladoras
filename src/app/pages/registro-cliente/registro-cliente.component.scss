@@ -2,6 +2,29 @@
   text-align: right;
 }
 
-.subir{
-  text-align: center;
+.generar{
+  margin: 20px 20px 20px 20px;
+}
+.mes{
+  margin: 10px 100px 100px 100px;
+}
+
+[required]{
+  box-shadow: 0 0 10px 1px red;
+}
+
+.d1:hover{
+  box-shadow: 1px 1px 1px 1px gray;
+  margin: 100 100 100 100px;
+  width: 30%;
+
+}
+
+.d2:hover{
+  box-shadow: 1px 1px 1px 1px gray;
+  margin: 100 100 100 100px;
+  width: 30%;
+  display: inline-block;
+  float: right;
+
 }

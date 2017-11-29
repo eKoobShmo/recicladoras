@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="form-group form-group--float">
-        <input type="text" class="form-control" formControlFloat required pattern="[A-Za-z]">
+        <input type="text" class="form-control" formControlFloat required>
         <label>Nombres</label>
         <i class="form-group__bar"></i>
       </div>
@@ -33,24 +33,23 @@
           <i class="form-group__bar"></i>
         </div>
       </div>
-      <div class="Row">
+      <div class="Row generar">
         <a class="btn btn-light" href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" target="_blank" role="button">Generar</a>
       </div>
     </div>
 <div class="Row">
-  <div class="card">
-      <div class="card-body">
+  <div class="card d1">
           <h4 class="card-title">Identificacion Oficial</h4>
-          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
-      </div>
-  </div>
-  <div class="card">
+          <input type="file" name="archivo" value="arch">
+    </div>
+      <div class="d2">
       <div class="card-body">
           <h4 class="card-title">Comprobante De Domicilio</h4>
-          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
+          <input type="file" name="archivo" value="arch">
       </div>
+    </div>
   </div>
-  <div class="select">
+  <div class="select mes">
     <div class="form-group form-group--select">
       <div class="col-sm-2">
       <select class="form-control" Enabled>
@@ -63,7 +62,7 @@
     <div class="subir">
       <button type="button" class="btn btn-success btn-lg">Huella</button>
       <button type="button" class="btn btn-success btn-lg">Huella</button>
-      <div class="btn-group" dropdown>
+      <div class="btn-group foto" dropdown>
         <button dropdownToggle type="button" class="btn btn-light">Foto</button>
         <div *dropdownMenu class="dropdown-menu">
           <a class="dropdown-item" href="#">Subir Foto</a>
@@ -75,5 +74,5 @@
   </div>
 </div>
       <button type="button" class="btn btn-success">Guardar Datos</button>
-  </div>
+
 </section>

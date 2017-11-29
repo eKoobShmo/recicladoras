@@ -11,5 +11,5 @@ export class RegistroClienteComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ //$scope.patternNombre=/^[a-zA-Z]*$/;
 }
