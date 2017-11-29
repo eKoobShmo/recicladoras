@@ -25,7 +25,7 @@
                                 <td>{{producto.precio}}</td>
                                 <td>{{producto.total}}</td>
                                 <td>
-                                    <button class="btn btn-success" (click)="editProduct(i)">Editar</button>
+                                    <button class="btn btn-success" (click)="sendProductToEdit(i)">Editar</button>
                                     <button class="btn btn-danger" (click)="deleteProducto(i)">Eliminar</button>
                                 </td>
                             </tr>
@@ -46,36 +46,42 @@
                 <div>
 
                     <div class="form-group mt-4">
-                        <input type="text" class="form-control form-control" placeholder="Nombre Producto" [(ngModel)]="editableProduct.nombre">
+                        <input type="text" class="form-control form-control" placeholder="Nombre Producto"
+                               [(ngModel)]="editableProduct.nombre">
                         <i class="form-group__bar"></i>
                     </div>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input" [(ngModel)]="editableProduct.unidad">
+                        <input type="radio" name="radio-inline" value="Kg" class="custom-control-input"
+                               [(ngModel)]="editableProduct.unidad">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Kg</span>
                     </label>
 
                     <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input" [(ngModel)]="editableProduct.unidad">
+                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input"
+                               [(ngModel)]="editableProduct.unidad">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Unidad</span>
                     </label>
                     <div class="form-group">
                         <div class="input-group mt-3">
-                            <button *ngIf="unidadProductoEditar == 'Kg'" class="btn btn-success">Bascula</button>
-                            <input type="text" class="form-control form-control" placeholder="" [(ngModel)]="editableProduct.cantidad">
+                            <button *ngIf="editableProduct.unidad == 'Kg'" class="btn btn-success">Bascula</button>
+                            <input type="text" class="form-control form-control" placeholder=""
+                                   [(ngModel)]="editableProduct.cantidad">
                             <i class="form-group__bar"></i>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control form-control" placeholder="Precio" [(ngModel)]="editableProduct.precio">
+                        <input type="text" class="form-control form-control" placeholder="Precio"
+                               [(ngModel)]="editableProduct.precio">
                         <i class="form-group__bar"></i>
                     </div>
 
                     <button class="btn btn-success" *ngIf="!editar" (click)="addNewProduct()">Agregar Producto</button>
-                    <button class="btn btn-success" *ngIf="editar" (click)="finishEditProduct()">Finalizar Edicion</button>
+                    <button class="btn btn-success" *ngIf="editar" (click)="finishEditProduct()">Finalizar Edicion
+                    </button>
                 </div>
             </div>
 
@@ -84,3 +90,4 @@
     </div>
 
 </section>
+

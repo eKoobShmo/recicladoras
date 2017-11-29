@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Producto} from "../../interfaces/producto";
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {Compra} from "../../interfaces/compra";
+import {isUndefined} from 'util';
 
 @Component({
     selector: 'app-venta',
@@ -12,7 +13,7 @@ export class VentaComponent implements OnInit {
 
     productos: Producto[] = [
         {
-            nombre:"Roca Lunar",
+            nombre: "Roca Lunar",
             unidad: "Kg",
             precio: 25,
             cantidad: 2,
@@ -41,7 +42,7 @@ export class VentaComponent implements OnInit {
         },
         {
             nombre: "Puerta Fierro",
-            unidad: "Unidad",
+            unidad: 'Unidad',
             precio: 25,
             cantidad: 2,
             total: 50,
@@ -64,12 +65,11 @@ export class VentaComponent implements OnInit {
     ];
 
     compra: FirebaseListObservable<any>;
-
-    editableProduct: Producto;
-    editar: boolean = false;
+    editableProduct: Producto = {} as Producto;
+    editar = false;
     indexProducto: number;
 
-    total: number = 0;
+    total: number;
 
 
     constructor(private db: AngularFireDatabase) {
@@ -77,51 +77,68 @@ export class VentaComponent implements OnInit {
 
     ngOnInit() {
         this.compra = this.db.list('Compras');
+        this.total = 0;
+        this.calculateTotal();
     }
 
-    calculateTotal(){
+    calculateTotal() {
         this.total = null;
-        for(let producto of this.productos){
-            this.total += producto.total;
+        if (this.productos.length != 0) {
+            for (let producto of this.productos) {
+                this.total += producto.total;
+            }
+        }
+        else {
+            this.total = 0;
         }
     }
 
-    addNewProduct(){
 
-        if(this.editableProduct != null)
-        {
-            this.productos.push({
-                nombre: this.editableProduct.nombre,
-                unidad: this.editableProduct.unidad,
-                cantidad: this.editableProduct.cantidad,
-                precio: this.editableProduct.precio,
-                total: this.editableProduct.precio * this.editableProduct.cantidad
-            });
+    isProductFormEmpty(): boolean {
+        if (
+            !isUndefined(this.editableProduct.nombre) &&
+            !isUndefined(this.editableProduct.unidad) &&
+            !isUndefined(this.editableProduct.cantidad) &&
+            !isUndefined(this.editableProduct.precio)
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-            this.editableProduct = null;
+
+    calculateTotalProduct() {
+        this.editableProduct.total = this.editableProduct.cantidad * this.editableProduct.precio;
+    }
+
+    resetEditableProduct() {
+        this.editableProduct = {} as Producto;
+    }
+
+    addNewProduct() {
+
+        if (!this.isProductFormEmpty()) {
+            this.calculateTotalProduct();
+            this.productos.push(this.editableProduct);
+            this.resetEditableProduct();
             this.calculateTotal();
         }
 
     }
 
-    editProduct(index:number){
+    sendProductToEdit(index: number) {
         this.indexProducto = index;
         this.editableProduct = this.productos[index];
-        this.editar= true;
+        this.editar = true;
     }
 
-    finishEditProduct(){
+    finishEditProduct() {
 
-        if(this.editableProduct != null)
-        {
-            this.productos[this.indexProducto]={
-                nombre: this.editableProduct.nombre,
-                unidad: this.editableProduct.unidad,
-                cantidad: this.editableProduct.cantidad,
-                precio: this.editableProduct.precio,
-                total: this.editableProduct.precio * this.editableProduct.cantidad
-            };
-            this.editableProduct = null;
+        if (!this.isProductFormEmpty()) {
+            this.calculateTotalProduct();
+            this.productos[this.indexProducto] = this.editableProduct;
+            this.resetEditableProduct();
             this.editar = false;
             this.indexProducto = null;
             this.calculateTotal();
@@ -129,20 +146,20 @@ export class VentaComponent implements OnInit {
 
     }
 
-    deleteProducto(index: number){
+    deleteProducto(index: number) {
         this.productos.splice(index, 1);
         this.calculateTotal();
     }
 
-    finishSell(){
-        if(this.productos != null){
+    finishSell() {
+        if (this.productos != null) {
             this.compra.push({
                 productos: this.productos,
                 total: this.total
             })
 
-            this.productos = null;
-            this.total = 0;
+            this.resetEditableProduct();
+            this.calculateTotal();
         }
 
     }
