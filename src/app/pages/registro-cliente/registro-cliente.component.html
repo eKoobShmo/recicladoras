@@ -38,52 +38,23 @@
       </div>
     </div>
 <div class="Row">
-  <div class="card">
+  <div class="dnd1">
+    <div class="card">
       <div class="card-body">
           <h4 class="card-title">Identificacion Oficial</h4>
-          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
+          <form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form>
       </div>
+    </div>
   </div>
+<div class="dnd2">
   <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Comprobante De Domicilio</h4>
-        <div class="well dropzone">
-          <h5>Arrastra Archivos</h5>
-          <img src="/assets/img/drop-images.png">
-          <!--form dropzone [posturl]="dropzonePostUrl" class="dropzone"></form-->
-        </div>
-
-      </div>
-      <div class="col-md-8">
-        <h4>cargar archivos</h4>
-        <button type="button" name="btn btn-success"
-          {click}="cargarImagenesFirebase()"
-          [disabled]="archivos.length == 0 || !permiteCargar ">
-           Cargar a Firebase
-        </button>
-        <button type="button" class="btn btn-danger"
-          {click}="limpiarArchivos()">Limpiar Archivos</button>
+          <h4 class="card-title">Comprobante de Domicilio</h4>
+          <form dropzone [posturl]="dropzonePostUrl1" class="dropzone"></form>
       </div>
   </div>
-
-  <table class"table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Nombre</th>
-        <th>Tamaño</th>
-        <th>Progreso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
+  </div>
+</div>
   <div class="select">
     <div class="form-group form-group--select">
       <div class="col-sm-2">
@@ -94,20 +65,19 @@
         <option>Noviembre</option><option>Diciembre</option>
       </select>
       </div>
-    <div class="subir">
-      <button type="button" class="btn btn-success btn-lg">Huella</button>
-      <button type="button" class="btn btn-success btn-lg">Huella</button>
-      <div class="btn-group" dropdown>
-        <button dropdownToggle type="button" class="btn btn-light">Foto</button>
-        <div *dropdownMenu class="dropdown-menu">
-          <a class="dropdown-item" href="#">Subir Foto</a>
-          <a class="dropdown-item" href="#">Tomar Foto</a>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
-</div>
+  <div class="subir">
+    <img src="../assets/images/fingerprint.png" class="img">
+    <img src="../assets/images/fingerprint.png" class="img">
+    <div class="btn-group" dropdown>
+      <img dropdownToggle type="button" src="../assets/images/user.png" class="img">
+      <div *dropdownMenu class="dropdown-menu">
+        <a class="dropdown-item" href="#">Subir Foto</a>
+        <a class="dropdown-item" href="#">Tomar Foto</a>
+      </div>
+    </div>
+  </div>
       <button type="button" class="btn btn-success">Guardar Datos</button>
   </div>
 </section>

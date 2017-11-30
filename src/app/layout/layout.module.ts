@@ -17,6 +17,7 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase} from "angularfire2/database";
 import {HomeComponent} from "../pages/home/home.component";
 import {RegistroClienteComponent} from "../pages/registro-cliente/registro-cliente.component";
+import {SharedModule} from "../shared/shared.module";
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -36,6 +37,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         CommonModule,
         LayoutRouting,
         FormsModule,
+        SharedModule,
         AngularFireModule,
         BsDropdownModule.forRoot(),
         ProgressbarModule.forRoot(),

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FileItem } from "../../models/file-item";
-import { CargarImagenesService } from "../../carga-imagenes.service";
 
 @Component({
   selector: 'app-registro-cliente',
@@ -9,11 +7,10 @@ import { CargarImagenesService } from "../../carga-imagenes.service";
 })
 export class RegistroClienteComponent implements OnInit {
 
-  estaSobreDropZone:boolean = false;
-  permiteCargar:boolean = true;
-  archivos:FileItem[];
+dropzonePostUrl:any = 'dropzonePostUrl'
+dropzonePostUrl1:any = 'dropzonePostUrl1'
 
-  constructor( public _cargaImagenes:CargaImagenesService ) { }
+  constructor() { }
 
   ngOnInit() {
   }
