@@ -188,7 +188,7 @@ export class LoginComponent implements OnInit {
             this.afAuth.auth.signInWithEmailAndPassword(user.email, user.pass)
                 .then((response: any) => {
                     console.log(response);
-                    window.location.href = '#/categorias';
+                    window.location.href = '#/principal';
                     this.isLoading = false;
                 })
                 .catch((error: any) => {
