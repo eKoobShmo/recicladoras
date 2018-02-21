@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import {LoginComponent} from "./pages/login/login.component";
 import {alertService} from "./services/alert.service";
+import { ComprasComponent } from './pages/compras/compras.component';
 
 @NgModule({
     declarations: [
