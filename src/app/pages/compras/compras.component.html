@@ -1,0 +1,65 @@
+<section class="content">
+<div >
+
+
+    <div class="row">
+<div class="col-6">
+    <button type="button" class="btn btn-success">Nuevo</button>
+    <button type="button" class="btn btn-success">Editar</button>
+
+    <input class="form-control" type="text">
+    <input class="form-control" type="text">
+
+    <select name="OS" class="form-control">
+        <option value="1">Cobre</option>
+        <option value="1">Fierro</option>
+        <option value="1">Aluminio</option>
+
+
+    </select>
+    <button style="margin-top: 300px" type="button" class="btn btn-success">Agregar a la lista </button>
+    <!--<button type="button" class="btn btn-success">Finalizar compra </button>-->
+
+
+
+
+
+</div>
+        <!--Buscador y Tabla Precios-->
+        <div class="col-6">
+
+            <div class="tableHeigh">
+                <perfect-scrollbar>
+                    <table class="table mb-3 mt-3">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                            <th> Borrar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let producto of productosTemporal">
+                            <td>{{producto.producto}}</td>
+                            <td>{{producto.precio}}</td>
+                            <td>
+                                <button class="btn btn-success"
+                                        (click)="sendProductToEdit(producto.$key,producto.producto,producto.precio)">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </perfect-scrollbar>
+            </div>
+            </div>
+
+
+        </div>
+
+</div>
+
+
+</section>
