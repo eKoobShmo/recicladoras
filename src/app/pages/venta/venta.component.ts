@@ -3,6 +3,7 @@ import {Producto} from "../../interfaces/producto";
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {Compra} from "../../interfaces/compra";
 import {isUndefined} from 'util';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-venta',
@@ -72,8 +73,13 @@ export class VentaComponent implements OnInit {
     total: number;
 
 
-    constructor(private db: AngularFireDatabase) {
+    items: Observable<any[]>;
+    constructor(db: AngularFireDatabase) {
+        this.items = db.list('productos')
     }
+
+
+
 
     ngOnInit() {
         this.compra = this.db.list('Compras');
