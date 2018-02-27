@@ -74,7 +74,7 @@ export class VentaComponent implements OnInit {
 
 
     items: Observable<any[]>;
-    constructor(db: AngularFireDatabase) {
+    constructor( private db: AngularFireDatabase) {
         this.items = db.list('productos')
     }
 
@@ -126,6 +126,7 @@ export class VentaComponent implements OnInit {
 
         if (!this.isProductFormEmpty()) {
             this.calculateTotalProduct();
+            this.db.list("productos").push(this.editableProduct)
             this.productos.push(this.editableProduct);
             this.resetEditableProduct();
             this.calculateTotal();

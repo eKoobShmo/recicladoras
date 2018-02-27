@@ -19,7 +19,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let producto of productos; let i = index">
+                            <tr *ngFor="let producto of items | async; let i = index">
                                 <td>{{producto.nombre}}</td>
                                 <td>{{producto.cantidad}}</td>
                                 <td>{{producto.precio}}</td>
