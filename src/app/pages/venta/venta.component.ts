@@ -66,16 +66,16 @@ export class VentaComponent implements OnInit {
     ];
 
     compra: FirebaseListObservable<any>;
-    editableProduct: Producto = {} as Producto;
+    editableProduct: any;
     editar = false;
-    indexProducto: number;
+    indexProducto: string;
 
     total: number;
 
 
     items: Observable<any[]>;
     constructor( private db: AngularFireDatabase) {
-        this.items = db.list('productos')
+
     }
 
 
@@ -85,6 +85,7 @@ export class VentaComponent implements OnInit {
         this.compra = this.db.list('Compras');
         this.total = 0;
         this.calculateTotal();
+        this.items = this.db.list('productos')
     }
 
     calculateTotal() {
@@ -107,8 +108,10 @@ export class VentaComponent implements OnInit {
             !isUndefined(this.editableProduct.cantidad) &&
             !isUndefined(this.editableProduct.precio)
         ) {
+            debugger
             return false;
         } else {
+            debugger
             return true;
         }
     }
@@ -126,7 +129,8 @@ export class VentaComponent implements OnInit {
 
         if (!this.isProductFormEmpty()) {
             this.calculateTotalProduct();
-            this.db.list("productos").push(this.editableProduct)
+            let key = this.db.list("productos").push(this.editableProduct).key
+            this.db.list("productos").update(key,{key:key})
             this.productos.push(this.editableProduct);
             this.resetEditableProduct();
             this.calculateTotal();
@@ -134,9 +138,11 @@ export class VentaComponent implements OnInit {
 
     }
 
-    sendProductToEdit(index: number) {
+    sendProductToEdit(index: string) {
         this.indexProducto = index;
-        this.editableProduct = this.productos[index];
+        this.db.object("productos/"+index)
+            
+        this.editableProduct =  this.db.object("productos/"+index)
         this.editar = true;
     }
 
@@ -144,7 +150,7 @@ export class VentaComponent implements OnInit {
 
         if (!this.isProductFormEmpty()) {
             this.calculateTotalProduct();
-            this.productos[this.indexProducto] = this.editableProduct;
+            this.db.list("productos").update(this.editableProduct.key,this.editableProduct)
             this.resetEditableProduct();
             this.editar = false;
             this.indexProducto = null;

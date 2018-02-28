@@ -25,7 +25,7 @@
                                 <td>{{producto.precio}}</td>
                                 <td>{{producto.total}}</td>
                                 <td>
-                                    <button class="btn btn-success" (click)="sendProductToEdit(i)">Editar</button>
+                                    <button class="btn btn-success" (click)="sendProductToEdit(producto.key)">Editar</button>
                                     <button class="btn btn-danger" (click)="deleteProducto(i)">Eliminar</button>
                                 </td>
                             </tr>
@@ -55,18 +55,18 @@
                         <input type="radio" name="radio-inline" value="Kg" class="custom-control-input"
                                [(ngModel)]="editableProduct.unidad">
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Kg</span>
+                        <span class="custom-control-description">Cantidad</span>
                     </label>
 
-                    <label class="custom-control custom-radio">
-                        <input type="radio" name="radio-inline" value="Unidad" class="custom-control-input"
-                               [(ngModel)]="editableProduct.unidad">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Unidad</span>
-                    </label>
+                    <!--<label class="custom-control custom-radio">-->
+                        <!--<input type="radio" name="radio-inline" value="Unidad" class="custom-control-input"-->
+                               <!--[(ngModel)]="editableProduct.unidad">-->
+                        <!--<span class="custom-control-indicator"></span>-->
+                        <!--<span class="custom-control-description">Unidad</span>-->
+                    <!--</label>-->
                     <div class="form-group">
                         <div class="input-group mt-3">
-                            <button *ngIf="editableProduct.unidad == 'Kg'" class="btn btn-success">Bascula</button>
+                            <!--<button *ngIf="editableProduct.unidad == 'Kg'" class="btn btn-success">Bascula</button>-->
                             <input type="text" class="form-control form-control" placeholder=""
                                    [(ngModel)]="editableProduct.cantidad">
                             <i class="form-group__bar"></i>
