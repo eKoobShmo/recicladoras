@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Producto} from "../../interfaces/producto";
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
-import {Compra} from "../../interfaces/compra";
 import {isUndefined} from 'util';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-venta',
@@ -12,86 +9,33 @@ import {Observable} from 'rxjs/Observable';
 })
 export class VentaComponent implements OnInit {
 
-    productos: Producto[] = [
-        {
-            nombre: "Roca Lunar",
-            unidad: "Kg",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: "Unidad",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: "Unidad",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: "Unidad",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: 'Unidad',
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: "Unidad",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-        {
-            nombre: "Puerta Fierro",
-            unidad: "Unidad",
-            precio: 25,
-            cantidad: 2,
-            total: 50,
-        },
-
-    ];
-
-    compra: FirebaseListObservable<any>;
-    editableProduct: any;
+    editableProduct: any ={
+        nombre: null,
+        unidad: 'Kg',
+        cantidad: null,
+        precio: null
+    };
     editar = false;
     indexProducto: string;
+    total: number = 0;
+    items: any[] = [];
+    esVenta: boolean = false;
 
-    total: number;
-
-
-    items: Observable<any[]>;
     constructor( private db: AngularFireDatabase) {
-
+        this.db.list('productos')
+            .subscribe((response:any[])=>{
+                this.items = response;
+                this.calculateTotal();
+            })
     }
 
-
-
-
     ngOnInit() {
-        this.compra = this.db.list('Compras');
-        this.total = 0;
-        this.calculateTotal();
-        this.items = this.db.list('productos')
     }
 
     calculateTotal() {
         this.total = null;
-        if (this.productos.length != 0) {
-            for (let producto of this.productos) {
+        if (this.items.length != 0) {
+            for (let producto of this.items) {
                 this.total += producto.total;
             }
         }
@@ -102,48 +46,43 @@ export class VentaComponent implements OnInit {
 
 
     isProductFormEmpty(): boolean {
-        if (
-            !isUndefined(this.editableProduct.nombre) &&
+        return !(!isUndefined(this.editableProduct.nombre) &&
             !isUndefined(this.editableProduct.unidad) &&
             !isUndefined(this.editableProduct.cantidad) &&
-            !isUndefined(this.editableProduct.precio)
-        ) {
-            debugger
-            return false;
-        } else {
-            debugger
-            return true;
-        }
+            !isUndefined(this.editableProduct.precio));
     }
-
 
     calculateTotalProduct() {
         this.editableProduct.total = this.editableProduct.cantidad * this.editableProduct.precio;
     }
 
     resetEditableProduct() {
-        this.editableProduct = {} as Producto;
+        this.editableProduct = {
+            nombre: null,
+            unidad: 'Kg',
+            cantidad: null,
+            precio: null
+        };
     }
 
     addNewProduct() {
-
         if (!this.isProductFormEmpty()) {
+            debugger
             this.calculateTotalProduct();
             let key = this.db.list("productos").push(this.editableProduct).key
             this.db.list("productos").update(key,{key:key})
-            this.productos.push(this.editableProduct);
             this.resetEditableProduct();
             this.calculateTotal();
         }
-
     }
 
-    sendProductToEdit(index: string) {
-        this.indexProducto = index;
-        this.db.object("productos/"+index)
-            
-        this.editableProduct =  this.db.object("productos/"+index)
-        this.editar = true;
+    sendProductToEdit(key: string) {
+        this.esVenta = false;
+        this.db.object("productos/"+key)
+            .subscribe((response:any)=>{
+                this.editableProduct =response;
+                if(!this.esVenta) this.editar = true;
+            })
     }
 
     finishEditProduct() {
@@ -159,19 +98,24 @@ export class VentaComponent implements OnInit {
 
     }
 
-    deleteProducto(index: number) {
-        this.productos.splice(index, 1);
+    deleteProducto(key: string) {
+        this.db.list('productos').remove(key);
+        this.resetEditableProduct()
+        this.editar = false;
         this.calculateTotal();
     }
 
     finishSell() {
-        if (this.productos != null) {
-            this.compra.push({
-                productos: this.productos,
+        this.editar = false;
+        this.esVenta = true;
+        if (this.items != null) {
+            this.db.list('ventas').push({
+                productos: this.items,
                 total: this.total
-            })
-
+            });
+            this.db.list('productos').remove();
             this.resetEditableProduct();
+            this.items = [];
             this.calculateTotal();
         }
 
