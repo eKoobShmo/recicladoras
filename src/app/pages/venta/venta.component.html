@@ -46,24 +46,11 @@
                 <div>
 
                     <div class="form-group mt-4">
-                        <input type="text" class="form-control form-control" placeholder="Nombre Producto"
-                               [(ngModel)]="editableProduct.nombre">
-                        <i class="form-group__bar"></i>
+                        <select class="form-control" [(ngModel)]="productoKey">
+                            <option [value]="ProductoAlmacen.$key" *ngFor="let ProductoAlmacen of productosAlmacen">{{ProductoAlmacen.producto}}</option>
+                        </select>
                     </div>
 
-                    <!--<label class="custom-control custom-radio">-->
-                        <!--<input type="radio" name="radio-inline" value="Kg" class="custom-control-input"-->
-                               <!--[(ngModel)]="editableProduct.unidad">-->
-                        <!--<span class="custom-control-indicator"></span>-->
-                        <!--<span class="custom-control-description">Cantidad</span>-->
-                    <!--</label>-->
-
-                    <!--<label class="custom-control custom-radio">-->
-                        <!--<input type="radio" name="radio-inline" value="Unidad" class="custom-control-input"-->
-                               <!--[(ngModel)]="editableProduct.unidad">-->
-                        <!--<span class="custom-control-indicator"></span>-->
-                        <!--<span class="custom-control-description">Unidad</span>-->
-                    <!--</label>-->
                     <div class="form-group">
                         <div class="input-group mt-3">
                             <!--<button *ngIf="editableProduct.unidad == 'Kg'" class="btn btn-success">Bascula</button>-->
@@ -73,16 +60,13 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="number" class="form-control form-control" placeholder="Precio"
-                               [(ngModel)]="editableProduct.precio">
-                        <i class="form-group__bar"></i>
-                    </div>
 
                     <button class="btn btn-success" *ngIf="!editar" (click)="addNewProduct()">Agregar Producto</button>
                     <button class="btn btn-success" *ngIf="editar" (click)="finishEditProduct()">Finalizar Edicion
                     </button>
                 </div>
+
+
             </div>
 
         </div>

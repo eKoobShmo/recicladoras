@@ -20,6 +20,10 @@ export class VentaComponent implements OnInit {
     total: number = 0;
     items: any[] = [];
     esVenta: boolean = false;
+    productosAlmacen: any [] = [];
+    productosAlmacenFirebase: FirebaseListObservable<any[]>;
+    productoKey: string = null
+    esFinalizarEdicion: boolean = false;
 
     constructor( private db: AngularFireDatabase) {
         this.db.list('productos')
@@ -27,6 +31,12 @@ export class VentaComponent implements OnInit {
                 this.items = response;
                 this.calculateTotal();
             })
+
+        this.productosAlmacenFirebase = this.db.list("ProductosAlmacen")
+        this.productosAlmacenFirebase.subscribe((response:any[])=>{
+            debugger
+            this.productosAlmacen= response
+        })
     }
 
     ngOnInit() {
@@ -46,10 +56,8 @@ export class VentaComponent implements OnInit {
 
 
     isProductFormEmpty(): boolean {
-        return !(!isUndefined(this.editableProduct.nombre) &&
-            !isUndefined(this.editableProduct.unidad) &&
-            !isUndefined(this.editableProduct.cantidad) &&
-            !isUndefined(this.editableProduct.precio));
+        return !(!isUndefined(this.editableProduct.unidad) &&
+            !isUndefined(this.editableProduct.cantidad))
     }
 
     calculateTotalProduct() {
@@ -67,33 +75,53 @@ export class VentaComponent implements OnInit {
 
     addNewProduct() {
         if (!this.isProductFormEmpty()) {
-            debugger
-            this.calculateTotalProduct();
-            let key = this.db.list("productos").push(this.editableProduct).key
-            this.db.list("productos").update(key,{key:key})
-            this.resetEditableProduct();
-            this.calculateTotal();
+
+            this.db.object("ProductosAlmacen/"+this.productoKey).subscribe((response:any)=>{
+                debugger
+                this.editableProduct.nombre=response.producto
+                this.editableProduct.precio=response.precio
+                this.editableProduct.productoKey=this.productoKey
+                this.calculateTotalProduct();
+                let key = this.db.list("productos").push(this.editableProduct).key
+                this.db.list("productos").update(key,{key:key})
+                this.resetEditableProduct();
+                this.calculateTotal();
+
+            })
         }
     }
 
     sendProductToEdit(key: string) {
         this.esVenta = false;
+        this.esFinalizarEdicion = false;
         this.db.object("productos/"+key)
             .subscribe((response:any)=>{
                 this.editableProduct =response;
-                if(!this.esVenta) this.editar = true;
+                this.productoKey= response.productoKey
+                debugger
+                if(!this.esVenta && !this.esFinalizarEdicion) {
+                    this.editar = true;
+                } else {
+                    this.resetEditableProduct()
+                }
             })
     }
 
     finishEditProduct() {
 
         if (!this.isProductFormEmpty()) {
-            this.calculateTotalProduct();
-            this.db.list("productos").update(this.editableProduct.key,this.editableProduct)
-            this.resetEditableProduct();
-            this.editar = false;
-            this.indexProducto = null;
-            this.calculateTotal();
+            this.db.object("ProductosAlmacen/"+this.productoKey).subscribe((response:any)=> {
+                this.esFinalizarEdicion = true
+                this.editableProduct.nombre= response.producto
+                this.editableProduct.precio= response.precio
+                this.calculateTotalProduct();
+                this.editableProduct.productoKey = this.productoKey
+                this.db.list("productos").update(this.editableProduct.key, this.editableProduct)
+                this.resetEditableProduct();
+                this.editar = false;
+                this.indexProducto = null;
+                this.calculateTotal();
+            })
         }
 
     }
