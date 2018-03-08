@@ -23,8 +23,9 @@ export class PreciosComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.productosFireBase =  this.db.list('Productos');
-        this.db.list('Productos').subscribe(result => {
+        this.productosFireBase =  this.db.list('ProductosAlmacen');
+        this.productosFireBase
+            .subscribe(result => {
             this.productos =  this.productosTemporal = result;
         });
     }
@@ -38,12 +39,9 @@ export class PreciosComponent implements OnInit {
 
             this.nombreProductoEditar = this.precioProductoEditar = null;
         }
-
-
     }
     
     sendProductToEdit(keyProducto: string,producto:string,precio:number){
-
         this.nombreProductoEditar = producto;
         this.precioProductoEditar = precio;
         this.keyProductoEditar = keyProducto;
@@ -55,7 +53,6 @@ export class PreciosComponent implements OnInit {
                 producto: this.nombreProductoEditar,
                 precio: this.precioProductoEditar,
             });
-
             this.nombreProductoEditar = this.precioProductoEditar = this.keyProductoEditar = null;
         }
 
@@ -70,5 +67,7 @@ export class PreciosComponent implements OnInit {
         }
     }
 
-
+    deleteProducto(key: string){
+        this.productosFireBase.remove(key)
+    }
 }

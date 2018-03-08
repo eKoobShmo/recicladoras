@@ -19,7 +19,7 @@
                         <tr>
                             <th>Producto</th>
                             <th>Precio</th>
-                            <th>Editar</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -31,6 +31,7 @@
                                         (click)="sendProductToEdit(producto.$key,producto.producto,producto.precio)">
                                     Editar
                                 </button>
+                                <button class="btn btn-danger" (click)="deleteProducto(producto.$key)">Eliminar</button>
                             </td>
                         </tr>
                         </tbody>
