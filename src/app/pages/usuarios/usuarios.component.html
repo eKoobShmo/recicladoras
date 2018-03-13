@@ -1,0 +1,47 @@
+<section class="content">
+
+    <div class="card p-25 mr-5" style="height: 80vh">
+    <div class="row">
+
+        <!--Buscador y Tabla Usuarios-->
+        <div class="col-8">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar Usuario" [(ngModel)]="busqueda"
+                       (ngModelChange)="searchProduct(busqueda)">
+                <i class="form-group__bar"></i>
+            </div>
+            <div class="tableHeigh">
+                <perfect-scrollbar>
+                    <table class="table mb-3 mt-3">
+                        <thead class="thead-default">
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Tipo</th>
+                            <th>Editar</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr >
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-success"
+                                        (click)="sendProductToEdit(producto.$key,producto.producto,producto.precio)">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </perfect-scrollbar>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!--Edicion Usuarios-->
+
+
+</section>
