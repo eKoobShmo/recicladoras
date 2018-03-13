@@ -3,6 +3,7 @@ import {LayoutComponent} from './layout.component';
 import {LoginComponent} from "../pages/login/login.component";
 import {HomeComponent} from "../pages/home/home.component";
 import {UsuariosComponent} from '../pages/usuarios/usuarios.component';
+import {PreciosComponent} from '../pages/precios/precios.component';
 
 const LAYOUT_ROUTES: Routes = [
     {
