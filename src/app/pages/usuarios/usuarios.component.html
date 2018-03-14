@@ -38,6 +38,7 @@
             </div>
 
         </div>
+        <!--Agregar/Editar Usuarios-->
         <div class="col-4 mx-auto p-5">
             <h3 class="text-center">Agregar / Editar </h3>
             <div class="card">
@@ -52,23 +53,14 @@
                            [(ngModel)]="precioProductoEditar">
                     <i class="form-group__bar"></i>
                 </div>
-
-                <button class="btn btn-success" *ngIf="keyProductoEditar == null" (click)="addProducts()">Agregar
-                </button>
-
-            </div>
-            <div>
-                <button class="btn btn-success" *ngIf="keyProductoEditar == null" (click)="addProducts()">Agregar
+                <select class="form-control" [(ngModel)]="productoKey">
+                    <option  [value]="ProductoAlmacen.$key" *ngFor="let ProductoAlmacen of productosAlmacen">{{ProductoAlmacen.producto}}</option>
+                </select>
+                <button  class="btn btn-success"  style="margin-top: 50px" *ngIf="keyProductoEditar == null" (click)="addProducts()">Agregar
                 </button>
             </div>
-
 
         </div>
-    </div>
-    </div>
-
-
-    <!--Edicion Usuarios-->
-
-
+       </div>
+     </div>
 </section>
