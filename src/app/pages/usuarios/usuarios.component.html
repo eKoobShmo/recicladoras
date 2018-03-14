@@ -7,7 +7,7 @@
         <div class="col-8">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Buscar Usuario" [(ngModel)]="busqueda"
-                       (ngModelChange)="searchProduct(busqueda)">
+                       (ngModelChange)="searchUsuario(busqueda)">
                 <i class="form-group__bar"></i>
             </div>
             <div class="tableHeigh">
@@ -27,7 +27,7 @@
                             <td></td>
                             <td>
                                 <button class="btn btn-success"
-                                        (click)="sendProductToEdit(producto.$key,producto.producto,producto.precio)">
+                                        (click)="sendUsuarioToEdit(producto.$key,producto.producto,producto.precio)">
                                     Editar
                                 </button>
                             </td>
@@ -44,19 +44,19 @@
             <div class="card">
                 <div class="form-group mt-5">
                     <input type="text" class="form-control" placeholder="Nombre"
-                           [(ngModel)]="nombreProductoEditar">
+                           [(ngModel)]="nombreUsuarioEditar">
                     <i class="form-group__bar"></i>
                 </div>
 
                 <div class="form-group mt-5">
                     <input type="text" class="form-control" placeholder="Contraseña"
-                           [(ngModel)]="precioProductoEditar">
+                           [(ngModel)]="contrasenaUsuarioEditar">
                     <i class="form-group__bar"></i>
                 </div>
                 <select class="form-control" [(ngModel)]="productoKey">
                     <option  [value]="ProductoAlmacen.$key" *ngFor="let ProductoAlmacen of productosAlmacen">{{ProductoAlmacen.producto}}</option>
                 </select>
-                <button  class="btn btn-success"  style="margin-top: 50px" *ngIf="keyProductoEditar == null" (click)="addProducts()">Agregar
+                <button  class="btn btn-success"  style="margin-top: 70px" *ngIf="keyProductoEditar == null" (click)="addUsuario()">Agregar
                 </button>
             </div>
 
