@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
         afAuth.auth.onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = '#/categorias';
+                window.location.href = '#/principal';
             }
         });
 

@@ -25,6 +25,8 @@ import {AngularFireAuth} from 'angularfire2/auth';
 export class NavigationComponent implements OnInit {
     sidebarVisible: boolean;
 
+
+
     // Sub menu visibilities
     navigationSubState:any = {
         Tables: 'inactive',
