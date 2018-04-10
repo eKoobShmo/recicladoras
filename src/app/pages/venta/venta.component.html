@@ -1,0 +1,77 @@
+<section class="content">
+
+    <div class="card p-25 mr-5" style="height: 80vh">
+
+        <div class="row">
+
+            <!--Tabla Productos-->
+            <div class="col-8">
+                <div class="tableHeigh">
+                    <perfect-scrollbar>
+                        <table class="table mb-3 mt-3">
+                            <thead class="thead-default">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let producto of items">
+                                <td>{{producto?.nombre}}</td>
+                                <td>{{producto?.cantidad}}</td>
+                                <td>{{producto?.precio}}</td>
+                                <td>{{producto?.total}}</td>
+                                <td>
+                                    <button class="btn btn-success" (click)="sendProductToEdit(producto.key)">Editar</button>
+                                    <button class="btn btn-danger" (click)="deleteProducto(producto.key)">Eliminar</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </perfect-scrollbar>
+                </div>
+
+                <div class="text-center">
+                    <h4>Total: {{total}}</h4>
+                    <button class="btn btn-success" (click)="finishSell()">Finalizar Venta</button>
+                </div>
+            </div>
+
+            <!--Zona Edicion / Adicion Productos-->
+            <div class="col-4 mx-auto p-5">
+                <h3 class="text-center">Agregar / Editar Productos</h3>
+                <div>
+
+                    <div class="form-group mt-4">
+                        <select class="form-control" [(ngModel)]="productoKey">
+                            <option [value]="ProductoAlmacen.$key" *ngFor="let ProductoAlmacen of productosAlmacen">{{ProductoAlmacen.producto}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mt-3">
+                            <!--<button *ngIf="editableProduct.unidad == 'Kg'" class="btn btn-success">Bascula</button>-->
+                            <input type="number" class="form-control form-control" placeholder="Cantidad"
+                                   [(ngModel)]="editableProduct.cantidad">
+                            <i class="form-group__bar"></i>
+                        </div>
+                    </div>
+
+
+                    <button class="btn btn-success" *ngIf="!editar" (click)="addNewProduct()">Agregar Producto</button>
+                    <button class="btn btn-success" *ngIf="editar" (click)="finishEditProduct()">Finalizar Edicion
+                    </button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+

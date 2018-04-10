@@ -16,6 +16,7 @@ import {alertService} from "../services/alert.service";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase} from "angularfire2/database";
 import {HomeComponent} from "../pages/home/home.component";
+import {VentaComponent} from "../pages/venta/venta.component";
 import {PreciosComponent} from "../pages/precios/precios.component";
 import {UsuariosComponent} from '../pages/usuarios/usuarios.component';
 import {PerfilComponent} from "../pages/perfil/perfil.component";
@@ -32,6 +33,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         NavigationComponent,
         NavigationTriggerComponent,
         HomeComponent,
+        VentaComponent,
         PreciosComponent,
         UsuariosComponent,
         PerfilComponent
