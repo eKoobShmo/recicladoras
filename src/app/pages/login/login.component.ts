@@ -189,7 +189,7 @@ export class LoginComponent implements OnInit {
                 .then((response: any) => {
                     console.log(response);
                     localStorage.setItem('password', user.pass);
-                    window.location.href = '#/principal';
+                    window.location.href = '#/ventas';
                     this.isLoading = false;
                 })
                 .catch((error: any) => {
