@@ -43,23 +43,17 @@ export class NavigationComponent implements OnInit {
         this.navigationSubState[menu] = (this.navigationSubState[menu] === 'inactive' ? 'active' : 'inactive');
     }
 
-    signOut()  {
-        this.afAuth.auth.signOut().then(function() {
-            window.location.href = '#/login'
-    }).catch(function(error) {
-
-    })
-    }
-
     constructor(private sharedService: SharedService,
-                private afAuth: AngularFireAuth,) {
+                private afAuth: AngularFireAuth) {
         sharedService.sidebarVisibilitySubject.subscribe((value) => {
             this.sidebarVisible = value
         })
+    }
 
-
-
-
+    signOut(){
+        this.afAuth.auth.signOut().then(response=>{
+            window.location.href = '#/login';
+        })
     }
 
     ngOnInit() {

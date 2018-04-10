@@ -10,7 +10,7 @@ export const environment = {
         authDomain: "recicladoras-7920b.firebaseapp.com",
         databaseURL: "https://recicladoras-7920b.firebaseio.com",
         projectId: "recicladoras-7920b",
-        storageBucket: "",
+        storageBucket: "recicladoras-7920b.appspot.com",
         messagingSenderId: "19631074811"
     }
 };
