@@ -10,7 +10,7 @@ const LAYOUT_ROUTES: Routes = [
         path: '', component: LayoutComponent, children: [
         //Home
         {path: '', redirectTo: 'principal', pathMatch: 'full'},
-        {path: 'principal', component: PreciosComponent},
+        {path: 'principal', component: UsuariosComponent},
 
     ]
     }

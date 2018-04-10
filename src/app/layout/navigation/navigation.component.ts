@@ -1,5 +1,6 @@
 import { Component, OnInit, trigger, state, style, transition, animate} from '@angular/core';
 import { SharedService } from "../../shared/services/shared.service";
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
     selector: 'app-navigation',
@@ -40,9 +41,16 @@ export class NavigationComponent implements OnInit {
         this.navigationSubState[menu] = (this.navigationSubState[menu] === 'inactive' ? 'active' : 'inactive');
     }
 
-    constructor(private sharedService: SharedService) {
+    constructor(private sharedService: SharedService,
+                private afAuth: AngularFireAuth) {
         sharedService.sidebarVisibilitySubject.subscribe((value) => {
             this.sidebarVisible = value
+        })
+    }
+
+    signOut(){
+        this.afAuth.auth.signOut().then(response=>{
+            window.location.href = '#/login';
         })
     }
 

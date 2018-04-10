@@ -6,8 +6,8 @@
         <!--Buscador y Tabla Usuarios-->
         <div class="col-8">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Buscar Usuario" [(ngModel)]="busqueda"
-                       (ngModelChange)="searchUsuario(busqueda)">
+                <input type="text" class="form-control" placeholder="Buscar Usuario" #busqueda
+                       (ngModelChange)="searchUsuario(busqueda.value)">
                 <i class="form-group__bar"></i>
             </div>
             <div class="tableHeigh">
@@ -22,12 +22,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
-                            <td></td>
-                            <td></td>
+                        <tr *ngFor="let usuario of usuariosTemporal">
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.tipo }}</td>
                             <td>
                                 <button class="btn btn-success"
-                                        (click)="sendUsuarioToEdit(producto.$key,producto.producto,producto.precio)">
+                                        (click)="sendUsuarioToEdit(usuario.email, usuario.contrasenia, usuario.tipo, usuario.$key)">
                                     Editar
                                 </button>
                             </td>
@@ -43,20 +43,26 @@
             <h3 class="text-center">Agregar / Editar </h3>
             <div class="card">
                 <div class="form-group mt-5">
-                    <input type="text" class="form-control" placeholder="Nombre"
+                    <input type="email" class="form-control" placeholder="Email"
                            [(ngModel)]="nombreUsuarioEditar">
                     <i class="form-group__bar"></i>
                 </div>
 
                 <div class="form-group mt-5">
-                    <input type="text" class="form-control" placeholder="Contraseña"
-                           [(ngModel)]="contrasenaUsuarioEditar">
+                    <input type="password" class="form-control" placeholder="Contraseña"
+                           [(ngModel)]="contraseniaUsuarioEditar">
                     <i class="form-group__bar"></i>
                 </div>
-                <select class="form-control" [(ngModel)]="productoKey">
-                    <option  [value]="ProductoAlmacen.$key" *ngFor="let ProductoAlmacen of productosAlmacen">{{ProductoAlmacen.producto}}</option>
+                <select class="form-control" [(ngModel)]="tipoUsuarioEditar">
+                    <option value="" disabled selected>Seleccionar tipo de usuario</option>
+                    <option value="normal">Normal</option>
+                    <option value="admin">Admin</option>
                 </select>
-                <button  class="btn btn-success"  style="margin-top: 70px" *ngIf="keyProductoEditar == null" (click)="addUsuario()">Agregar
+                <button class="btn btn-success" *ngIf="usuarioKey == null" (click)="addUsuario()">Agregar
+                    Producto
+                </button>
+                <button class="btn btn-success" *ngIf="usuarioKey != null" (click)="finishUserEdit()">
+                    Editar Producto
                 </button>
             </div>
 

@@ -29,4 +29,10 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
     }
+
+    signOut(){
+        this.afAuth.auth.signOut().then(response=>{
+            window.location.href = '#/login';
+        })
+    }
 }
