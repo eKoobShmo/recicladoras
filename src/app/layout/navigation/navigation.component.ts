@@ -1,6 +1,7 @@
 import { Component, OnInit, trigger, state, style, transition, animate} from '@angular/core';
 import { SharedService } from "../../shared/services/shared.service";
 import {AngularFireAuth} from 'angularfire2/auth';
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'app-navigation',
@@ -37,6 +38,8 @@ export class NavigationComponent implements OnInit {
         Charts: 'inactive',
     };
 
+    tipoUsuario:string = '';
+
     // Toggle sub menu
     toggleNavigationSub(menu, event) {
         event.preventDefault();
@@ -44,9 +47,14 @@ export class NavigationComponent implements OnInit {
     }
 
     constructor(private sharedService: SharedService,
-                private afAuth: AngularFireAuth) {
+                private afAuth: AngularFireAuth,
+                private _userService:UserService) {
         sharedService.sidebarVisibilitySubject.subscribe((value) => {
             this.sidebarVisible = value
+        })
+
+        _userService.getUserType().then((response:string)=>{
+            this.tipoUsuario = response;
         })
     }
 

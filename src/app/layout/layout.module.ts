@@ -20,6 +20,7 @@ import {VentaComponent} from "../pages/venta/venta.component";
 import {PreciosComponent} from "../pages/precios/precios.component";
 import {UsuariosComponent} from '../pages/usuarios/usuarios.component';
 import {PerfilComponent} from "../pages/perfil/perfil.component";
+import {UserService} from '../services/user.service';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -50,7 +51,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ],
     providers: [
         alertService,
-        AngularFireDatabase
+        AngularFireDatabase,
+        UserService
     ]
 })
 

@@ -15,9 +15,9 @@
         </div>
 
         <ul class="navigation">
-            <li routerLinkActive="navigation__active"><a [routerLink]="['/ventas']"><i class="zmdi zmdi-shopping-cart"></i> Ventas</a></li>
-            <li routerLinkActive="navigation__active"><a [routerLink]="['/precios']"><i class="zmdi zmdi-money-box"></i> Precios</a></li>
-            <li routerLinkActive="navigation__active"><a [routerLink]="['/usuarios']"><i class="zmdi zmdi-accounts-list"></i> Usuarios</a></li>
+            <li routerLinkActive="navigation__active" *ngIf="tipoUsuario == 'normal' || tipoUsuario == 'admin'"><a [routerLink]="['/ventas']"><i class="zmdi zmdi-shopping-cart"></i> Ventas</a></li>
+            <li routerLinkActive="navigation__active" *ngIf="tipoUsuario == 'admin'"><a [routerLink]="['/precios']"><i class="zmdi zmdi-money-box"></i> Precios</a></li>
+            <li routerLinkActive="navigation__active" *ngIf="tipoUsuario == 'admin'"><a [routerLink]="['/usuarios']"><i class="zmdi zmdi-accounts-list"></i> Usuarios</a></li>
 
         </ul>
     </perfect-scrollbar>

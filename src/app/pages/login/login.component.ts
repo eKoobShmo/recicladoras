@@ -189,6 +189,7 @@ export class LoginComponent implements OnInit {
                 .then((response: any) => {
                     console.log(response);
                     localStorage.setItem('password', user.pass);
+                    localStorage.setItem('email', user.email);
                     window.location.href = '#/ventas';
                     this.isLoading = false;
                 })
