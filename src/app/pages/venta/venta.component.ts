@@ -34,7 +34,7 @@ export class VentaComponent implements OnInit {
 
         this.productosAlmacenFirebase = this.db.list("ProductosAlmacen")
         this.productosAlmacenFirebase.subscribe((response:any[])=>{
-            debugger
+
             this.productosAlmacen= response
         })
     }
@@ -77,7 +77,7 @@ export class VentaComponent implements OnInit {
         if (!this.isProductFormEmpty()) {
 
             this.db.object("ProductosAlmacen/"+this.productoKey).subscribe((response:any)=>{
-                debugger
+
                 this.editableProduct.nombre=response.producto
                 this.editableProduct.precio=response.precio
                 this.editableProduct.productoKey=this.productoKey
@@ -98,7 +98,7 @@ export class VentaComponent implements OnInit {
             .subscribe((response:any)=>{
                 this.editableProduct =response;
                 this.productoKey= response.productoKey
-                debugger
+
                 if(!this.esVenta && !this.esFinalizarEdicion) {
                     this.editar = true;
                 } else {
