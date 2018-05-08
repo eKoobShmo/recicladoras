@@ -9,11 +9,15 @@ export class UserService {
     }
 
     getUserType(){
-        return new Promise(resolve =>{
+        return new Promise((resolve,reject) =>{
             this.bd.list('usuarios')
                 .subscribe(usuarios=>{
                     let usuario:any = _.filter(usuarios, ['email', localStorage.getItem('email')])
-                    resolve(usuario[0].tipo)
+                    if (usuario[0]){
+                        resolve(usuario[0].tipo)
+                    }else {
+                        reject()
+                    }
                 })
         })
     }

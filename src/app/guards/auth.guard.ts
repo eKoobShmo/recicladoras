@@ -14,7 +14,8 @@ export class AuthGuard implements CanActivate {
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
         return new Promise(resolve => {
-            this._userService.getUserType().then((tipoUsuario: string) => {
+            this._userService.getUserType()
+                .then((tipoUsuario: string) => {
 
                 if (state.url == '/precios' && tipoUsuario == 'admin') {
                     resolve(true);
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
                     window.location.href = '/ventas';
                     resolve(false);
                 }
-            })
+            }).catch(error=>window.location.href = '/#/login')
         })
 
     }
